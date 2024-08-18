@@ -1,0 +1,63 @@
+<div class="container">
+  <form [formGroup]="formRegistrar">
+    <div class="mat-dialog-content">
+      <div class="row">
+        <mat-toolbar class="front">
+          <span>Registro</span>
+        </mat-toolbar>
+      </div>
+      <div class="row" style="margin-top: 3%">
+        <mat-form-field class="col-md-4">
+          <mat-label>Monto</mat-label>
+          <input matInput formControlName="validaMontoPagar" [readonly]="true" >
+          <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaMontoPagar.touched">
+            <span *ngIf="formRegistrar.controls.validaMontoPagar.hasError('required')">
+              El monto es requerido
+            </span>
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+          <mat-label>Fecha de Inicio Prestamo</mat-label>
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <input matInput [matDatepicker]="picker" formControlName="validaFechaInicioPrestamo">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+          <mat-label>Fecha de Fin de Prestamo</mat-label>
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <input matInput [matDatepicker]="picker2" formControlName="validaFechaFinPrestamo" [readonly]="true">
+          <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+          <mat-label>Dias</mat-label>
+          <input matInput formControlName="validaDias"  [readonly]="true">
+          <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaDias.touched">
+            <span *ngIf="formRegistrar.controls.validaDias.hasError('pattern')">
+              Dias debe de tener 9 dígitos
+            </span>
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="row" style="margin-top: 3%">
+        <mat-form-field class="col-md-4">
+          <mat-label>Pago diario</mat-label>
+          <input matInput formControlName="validaPagoDiario">
+          <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaPagoDiario.touched">
+            <span *ngIf="formRegistrar.controls.validaPagoDiario.hasError('required')">
+              El pago diario es requerido
+            </span>
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="row" style="margin-top: 3%; margin-left: auto; margin-right: auto; max-width: fit-content;">
+        <div mat-dialog-actions>
+          <button mat-raised-button type="submit" color="primary" [disabled]="formRegistrar.invalid"
+                  [mat-dialog-close]="1" (click)="registra()">Registra
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

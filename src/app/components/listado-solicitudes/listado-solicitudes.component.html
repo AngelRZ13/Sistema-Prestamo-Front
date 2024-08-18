@@ -1,0 +1,66 @@
+<app-menu></app-menu>
+<div class="container">
+  <div class="row">
+    <mat-toolbar color="primary">
+      <span>Listado de Solicitudes</span>
+    </mat-toolbar>
+  </div>
+  <form [formGroup]="searchForm">
+  <div class="row" style="margin-top: 3%">
+    <mat-form-field class="col-md-4">
+      <mat-label>Nombre de Prestatario</mat-label>
+      <input matInput formControlName="nombre">
+    </mat-form-field>
+    <mat-form-field class="col-md-4">
+      <mat-label>Fecha de Inicio Prestamo</mat-label>
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <input matInput [matDatepicker]="picker1" formControlName="fechaInicioPrestamo">
+      <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-4">
+      <mat-label>Fecha de Fin de Prestamo</mat-label>
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <input matInput [matDatepicker]="picker2" formControlName="fechaFinPrestamo">
+      <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <button (click)="Consulta()" mat-raised-button type="button" color="primary" style="width: 150px;">Filtrar</button>
+  </div>
+</form>
+  <div class="row" style="margin-top: 3%">
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="idSolicitud">
+        <mat-header-cell *matHeaderCellDef> Código </mat-header-cell>
+        <mat-cell *matCellDef="let aux"> {{ aux.idSolicitud }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="nombre de Prestatario">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let aux"> {{ aux.usuarioPrestatario.nombre }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Monto">
+        <mat-header-cell *matHeaderCellDef> Monto Pagar </mat-header-cell>
+        <mat-cell *matCellDef="let aux"> {{ aux.montoPagar+" PEN" }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Pago Diario">
+        <mat-header-cell *matHeaderCellDef> Pago Diario </mat-header-cell>
+        <mat-cell *matCellDef="let aux"> {{ aux.pagoDiario+" PEN" }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Interes">
+        <mat-header-cell *matHeaderCellDef> Interes </mat-header-cell>
+        <mat-cell *matCellDef="let aux"> {{ aux.Interes+"%" }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Acciones">
+        <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+        <mat-cell *matCellDef="let aux; let i=index;" >
+          <button mat-button color="accent" (click)="openDialogActualizar(aux)">Ver</button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let aux; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[6, 8, 10]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

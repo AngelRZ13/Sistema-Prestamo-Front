@@ -1,0 +1,19 @@
+<div class="container">
+  <h1 mat-dialog-title>Detalle de Solicitud</h1>
+  <div mat-dialog-content>
+    <p><strong>Código:</strong> {{ obj.idSolicitud }}</p>
+    <p><strong>Prestatamista:</strong> {{ obj.usuarioPrestatario?.usuarioSuperior?.nombre }}</p>
+    <p><strong>Prestatario:</strong> {{ obj.usuarioPrestatario!.nombre }}</p>
+    <p><strong>Fecha de Inicio:</strong> {{ obj.fechaInicioPrestamo | date: 'dd/MM/yyyy' }}</p>
+    <p><strong>Fecha de Fin:</strong> {{ obj.fechaFinPrestamo | date: 'dd/MM/yyyy' }}</p>
+    <p><strong>Monto Pagar:</strong> {{ obj.montoPagar }} PEN</p>
+    <p><strong>Pago Diario:</strong> {{ obj.pagoDiario }} PEN</p>
+    <p><strong>Interés:</strong> {{ obj.Interes }}PEN</p>
+    <p><strong>Tasa:</strong> 10%</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="aprobar()">Aprobar</button>
+    <button mat-button (click)="rechazar()">Rechazar</button>
+  </div>
+
+</div>

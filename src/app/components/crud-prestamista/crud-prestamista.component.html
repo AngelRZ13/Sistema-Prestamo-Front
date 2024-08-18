@@ -1,0 +1,54 @@
+<app-menu></app-menu>
+<div class="container">
+  <div class="row">
+    <mat-toolbar color="primary">
+      <span>Crud Usuario</span>
+    </mat-toolbar>
+  </div>
+  <div class="row" style="margin-top: 3%">
+    <button (click)="refreshTable()" mat-raised-button type="button" color="primary" style="width: 150px;">Listar</button>
+  </div>
+  <div class="row" style="margin-top: 3%">
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="idUsuario">
+        <mat-header-cell *matHeaderCellDef> Código </mat-header-cell>
+        <mat-cell *matCellDef="let aux"> {{ aux.idUsuario }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let aux"> {{ aux.nombre }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="apellido">
+        <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
+        <mat-cell *matCellDef="let aux"> {{ aux.apellido }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="dni">
+        <mat-header-cell *matHeaderCellDef> Dni </mat-header-cell>
+        <mat-cell *matCellDef="let aux"> {{ aux.dni }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="telefono">
+        <mat-header-cell *matHeaderCellDef> Telefono </mat-header-cell>
+        <mat-cell *matCellDef="let aux"> {{ aux.telefono }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="usuario">
+        <mat-header-cell *matHeaderCellDef> Usuario </mat-header-cell>
+        <mat-cell *matCellDef="let aux"> {{ aux.usuario }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="direccion">
+        <mat-header-cell *matHeaderCellDef> Direccion </mat-header-cell>
+        <mat-cell *matCellDef="let aux"> {{ aux.direccion }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+        <mat-cell *matCellDef="let aux; let i=index;" >
+          <button mat-icon-button color="accent" (click)="openDialogActualizar(aux)">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let aux; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[6, 8, 10]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
